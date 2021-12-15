@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+  
+  .message {
+	text-align: left;
+	margin-bottom: 5px;
+  }
+  
+  .form {
+	margin: 50px auto;
+	width: 500px;
+	height: 500px;
+	border: 3px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	background-color: rgb(223, 223, 223);
+  }
+  
+  .wrp {
+	overflow: auto;
+  }
+  
+  .input {
+	width: 80%;
+	font-size: 16px;
+	height: 25px;
+	border-radius: 7px;
+  }
+  
