@@ -1,33 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button } from './components/Button/button'
-import { Message } from './components/Message/message'
+import { Form } from './components/Form/form';
+import { useEffect, useState } from 'react';
+import { Messages } from './components/messageList/messages';
+import { AUTHOR } from './utils/constants';
+
 
 function App() {
-	const buttonLabel = 'BUTTON';
-	const handleClick = (text) => {
-		alert(`Welcome to React - ${text}`)
-	}
-	const txt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, tempore."
+	const [messageList, setMessageList] = useState([]);
+
+	const handlAddMessage = (newMessage) => {
+		setMessageList((prevMessageList) => [...prevMessageList, newMessage]);
+	};
+
+	useEffect(() => {
+		let timeout;
+		if (messageList[messageList.length - 1]?.author === AUTHOR.human) {
+			timeout = setTimeout(() => {
+				handlAddMessage({ text: "Сообщение доставлено", author: AUTHOR.bot });
+			}, 1500)
+		}
+
+		return () => {
+			clearTimeout(timeout)
+		};
+	}, [messageList])
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-				<Button onButtonClick={handleClick} title={buttonLabel} />
-				<Message text={txt} />
-			</header>
+			<div className='container'>
+				<Messages newMessageList={messageList} />
+				<Form onAddMessage={handlAddMessage} />
+			</div>
 		</div>
 	);
 }

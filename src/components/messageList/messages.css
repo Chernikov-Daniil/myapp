@@ -1,0 +1,10 @@
+.wrp {
+	overflow: auto;
+	background-color: rgb(186, 227, 243);
+	border-radius: 7px;
+  }
+
+  .message {
+	text-align: left;
+	margin: 0 0 5px 5px;
+  }
