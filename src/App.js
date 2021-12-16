@@ -1,27 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
 import { Form } from './components/Form/form';
 import { useEffect, useState } from 'react';
+import { Messages } from './components/messageList/messages';
+import { AUTHOR } from './utils/constants';
+
 
 function App() {
 	const [messageList, setMessageList] = useState([]);
 
-	useEffect(() => {
-		if (messageList[messageList.length - 1]?.author === "HUMAN") {
-			setTimeout(() => {
-				handlAddMessage({ text: "Сообщение доставлено", author: "ROBOT" });
-			}, 1500)
-		}
-	})
-
 	const handlAddMessage = (newMessage) => {
 		setMessageList((prevMessageList) => [...prevMessageList, newMessage]);
-		// console.log(messageList);
 	};
+
+	useEffect(() => {
+		let timeout;
+		if (messageList[messageList.length - 1]?.author === AUTHOR.human) {
+			timeout = setTimeout(() => {
+				handlAddMessage({ text: "Сообщение доставлено", author: AUTHOR.bot });
+			}, 1500)
+		}
+
+		return () => {
+			clearTimeout(timeout)
+		};
+	}, [messageList])
 
 	return (
 		<div className="App">
-			<Form onAddMessage={handlAddMessage} newMessageList={messageList} />
+			<div className='container'>
+				<Messages newMessageList={messageList} />
+				<Form onAddMessage={handlAddMessage} />
+			</div>
 		</div>
 	);
 }

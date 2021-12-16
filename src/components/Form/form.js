@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { AUTHOR } from "../../utils/constants";
 import "./form.css";
 
-export const Form = ({ onAddMessage, newMessageList }) => {
+export const Form = ({ onAddMessage }) => {
 	const [value, setValue] = useState("");
 
 	const handleChange = (e) => {
@@ -10,20 +11,12 @@ export const Form = ({ onAddMessage, newMessageList }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		setValue("");
-		onAddMessage({ text: value, author: "HUMAN" });
+		onAddMessage({ text: value, author: AUTHOR.human });
 	};
 
 	return (
 		<form className="form" onSubmit={handleSubmit}>
-			<div className="wrp">
-				{newMessageList.map(({ text, author }) => (
-					<div className="message">
-						{author}: {text}
-					</div>
-				))}
-			</div>
 			<div className="submit">
 				<textarea
 					type="text"
