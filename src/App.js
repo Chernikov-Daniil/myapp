@@ -1,38 +1,41 @@
-import './App.css';
-import { Form } from './components/Form/form';
-import { useEffect, useState } from 'react';
-import { Messages } from './components/messageList/messages';
-import { AUTHOR } from './utils/constants';
+import { useEffect, useState } from "react";
+import { ChatList } from "./components/chatList/index";
+import { Form } from "./components/Form/index";
+import { Messages } from "./components/messages/index";
+import "./App.css";
+import { AUTHORS } from "./utils/constants";
 
-
-function App() {
+export default function App() {
 	const [messageList, setMessageList] = useState([]);
 
-	const handlAddMessage = (newMessage) => {
-		setMessageList((prevMessageList) => [...prevMessageList, newMessage]);
+	const handleMessage = (newMessage) => {
+		setMessageList((prevMessage) => [...prevMessage, newMessage]);
 	};
 
 	useEffect(() => {
 		let timeout;
-		if (messageList[messageList.length - 1]?.author === AUTHOR.human) {
-			timeout = setTimeout(() => {
-				handlAddMessage({ text: "Сообщение доставлено", author: AUTHOR.bot });
-			}, 1500)
-		}
+		timeout = setTimeout(() => {
+			if (messageList[messageList.length - 1]?.author === AUTHORS.human) {
+				handleMessage({
+					text: "Сообщение доставлено",
+					author: AUTHORS.bot,
+					id: `msg-${Date.now()}`
+				});
+			}
+		}, 1500);
 
 		return () => {
-			clearTimeout(timeout)
+			clearTimeout(timeout);
 		};
-	}, [messageList])
+	}, [messageList]);
 
 	return (
 		<div className="App">
-			<div className='container'>
+			<ChatList />
+			<div className="wrp">
 				<Messages newMessageList={messageList} />
-				<Form onAddMessage={handlAddMessage} />
+				<Form onAddMessage={handleMessage} />
 			</div>
 		</div>
 	);
 }
-
-export default App;

@@ -1,0 +1,14 @@
+.box {
+	overflow: auto;
+ }
+ .human {
+	font-size: 20px;
+	font-family: "Times New Roman", Times, serif;
+ }
+ 
+ .bot {
+	font-size: 12px;
+	margin: 0 0 10px 0;
+	font-style: italic;
+ }
+ 
