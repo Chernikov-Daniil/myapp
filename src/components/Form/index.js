@@ -47,7 +47,7 @@ export const Form = ({ onAddMessage }) => {
 				label="Сообщение..."
 				variant="filled"
 				value={value}
-				ref={inputRef}
+				inputRef={inputRef}
 				onChange={handleChange}
 			/>
 			<Button
