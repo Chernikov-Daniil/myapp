@@ -1,0 +1,1 @@
+export const Error = () => <h3>404</h3>;

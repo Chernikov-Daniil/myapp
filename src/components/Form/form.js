@@ -6,7 +6,8 @@ import SendIcon from "@mui/icons-material/Send";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export const Form = ({ onAddMessage }) => {
+export const Form = ({ onSubmit }) => {
+
 	const [value, setValue] = useState("");
 
 	const inputRef = useRef();
@@ -15,15 +16,11 @@ export const Form = ({ onAddMessage }) => {
 		setValue(e.target.value);
 	};
 
-	const handleClick = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		setValue("");
 		inputRef.current.focus();
-		onAddMessage({
-			text: value,
-			author: AUTHORS.human,
-			id: `msg-${Date.now()}`
-		});
+		onSubmit(value);
 	}
 
 	useEffect(() => {
@@ -33,10 +30,10 @@ export const Form = ({ onAddMessage }) => {
 	return (
 		<Box
 			component="form"
-			onSubmit={handleClick}
+			onSubmit={handleSubmit}
 			sx={{
 				"& > :not(style)": {
-					m: 0, marginBottom: 1, padding: 0, width: "95%"
+					m: 0, marginBottom: 1, padding: 0, width: "100%"
 				}
 			}}
 			noValidate
