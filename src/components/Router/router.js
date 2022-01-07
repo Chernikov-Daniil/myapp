@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Routes, Route, NavLink } from 'react-router-dom';
 import { Chats } from '../../Pages/Chats/chats';
 import { Error } from '../Error/error';
 import { Profile } from '../../Pages/Profile/profile';
@@ -37,15 +37,30 @@ export const Router = () => {
 			<ul className="list">
 
 				<li className="list-item">
-					<Link to="/">Home</Link>
+					<NavLink
+						style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+						to="/"
+					>
+						Home
+					</NavLink>
 				</li >
 
 				<li className="list-item">
-					<Link to="/chats">Chats</Link>
+					<NavLink
+						style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+						to="/chats"
+					>
+						Chats
+					</NavLink>
 				</li>
 
 				<li className="list-item">
-					<Link to="/profile">Profile</Link>
+					<NavLink
+						style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+						to="/profile"
+					>
+						Profile
+					</NavLink>
 				</li>
 
 			</ul>
