@@ -1,41 +1,17 @@
-import { useEffect, useState } from "react";
-import { ChatList } from "./components/chatList/index";
-import { Form } from "./components/Form/index";
-import { Messages } from "./components/messages/index";
+import { Router } from "./components/Router/router";
 import "./App.css";
-import { AUTHORS } from "./utils/constants";
+import { ProfileContext } from "./utils/ProfileContext";
+import { useState } from "react";
+import { Provider } from 'react-redux';
+import { store } from "./store";
 
 export default function App() {
-	const [messageList, setMessageList] = useState([]);
-
-	const handleMessage = (newMessage) => {
-		setMessageList((prevMessage) => [...prevMessage, newMessage]);
-	};
-
-	useEffect(() => {
-		let timeout;
-		timeout = setTimeout(() => {
-			if (messageList[messageList.length - 1]?.author === AUTHORS.human) {
-				handleMessage({
-					text: "Сообщение доставлено",
-					author: AUTHORS.bot,
-					id: `msg-${Date.now()}`
-				});
-			}
-		}, 1500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, [messageList]);
-
+	const [name, setName] = useState('default');
 	return (
-		<div className="App">
-			<ChatList />
-			<div className="wrp">
-				<Messages newMessageList={messageList} />
-				<Form onAddMessage={handleMessage} />
-			</div>
-		</div>
-	);
+		<Provider store={store}>
+			<ProfileContext.Provider value={{ name, setName }}>
+				<Router />
+			</ProfileContext.Provider >
+		</Provider>
+	)
 }

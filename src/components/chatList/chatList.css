@@ -1,12 +1,42 @@
-.chatList {
-	width: 100px;
-	padding: 20px 0 0 0;
-	box-sizing: border-box;
-	border-radius: 20px;
-	border: 1px solid #000;
+.chats {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: bisque;
+	justify-content: center;
+	margin: 50px 0 0 0;
  }
- 
+
+ .chats-item {
+	 margin: 0 100px 0 0;
+	 font-size: 24px;
+	 list-style-type: none;
+	 text-decoration: none;
+	 padding-left: 30px;
+	 box-sizing: border-box;
+	 
+ }
+
+ .chats-item:last-child {
+	 margin: 0;
+ }
+
+ .link {
+	 text-decoration: none;
+	 position: relative;
+ }
+
+ .link:hover {
+	text-decoration: underline;
+}
+
+.link::before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 8px;
+	left: -23px;
+	background-image: url("../../utils/images/tick.png");
+	background-size:cover;
+	background-position: center;
+	background-repeat: no-repeat;
+} 
