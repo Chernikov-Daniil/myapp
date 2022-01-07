@@ -1,5 +1,5 @@
 import "./chatList.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 export const ChatList = ({ chats }) => {
 	return (
@@ -7,12 +7,13 @@ export const ChatList = ({ chats }) => {
 			<ul className="chats">
 				{chats.map((chat) => (
 					<li key={chat.id} className="chats-item">
-						<Link
+						<NavLink
+							style={({ isActive }) => ({ color: isActive ? "orange" : "black" })}
 							to={`/chats/${chat.id}`}
 							className="link"
 						>
 							{chat.name}
-						</Link>
+						</NavLink>
 					</li>
 				))}
 			</ul>

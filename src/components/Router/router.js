@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Routes, Route, NavLink } from 'react-router-dom';
 import { Chats } from '../../Pages/Chats/chats';
 import { Error } from '../Error/error';
-import { Profile } from '../../Pages/Profile/profile';
+import Profile from '../../Pages/Profile/profile';
 import { Home } from '../../Pages/Home/home';
 import "./router.css";
 import { ChatList } from '../chatList/chatList';

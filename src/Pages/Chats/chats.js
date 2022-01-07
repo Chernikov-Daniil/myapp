@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Form } from "../../components/Form/form";
 import { MessageList } from "../../components/messageList/messageList";
 import "./chats.css";
@@ -32,7 +32,7 @@ export const Chats = ({ messages, onAddMessage }) => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [messages]);
+	}, [messages, chatId, onAddMessage]);
 
 	if (!messages[chatId]) {
 		return <Navigate to="/chats" replace />;
