@@ -7,7 +7,7 @@ export const ProfileContext = React.createContext({
 
 export const withProfileContext =
 	(Component) =>
-		(...props) => {
+		(props) => {
 			const { name, setName } = useContext(ProfileContext);
 
 			return <Component {...props} name={name} setName={setName} />

@@ -1,6 +1,5 @@
 import "./form.css";
 import { useEffect, useRef, useState } from "react";
-import { AUTHORS } from "../../utils/constants";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Box from "@mui/material/Box";

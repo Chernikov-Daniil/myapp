@@ -1,7 +1,7 @@
-import { BrowserRouter, Link, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import { Chats } from '../../Pages/Chats/chats';
 import { Error } from '../Error/error';
-import Profile from '../../Pages/Profile/profile';
+import { Profile } from '../../Pages/Profile/profile';
 import { Home } from '../../Pages/Home/home';
 import "./router.css";
 import { ChatList } from '../chatList/chatList';
@@ -22,7 +22,6 @@ const initialMessages = initialChats.reduce((acc, chat) => {
 
 export const Router = () => {
 
-	const [chats, setChats] = useState(initialChats);
 	const [messages, setMessages] = useState(initialMessages);
 
 	const handleAddMessage = (newMessage, chatId) => {
@@ -31,6 +30,7 @@ export const Router = () => {
 			[chatId]: [...prevMessages[chatId], newMessage],
 		}));
 	};
+
 
 	return (
 		<BrowserRouter>
@@ -67,7 +67,7 @@ export const Router = () => {
 
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="chats" element={<ChatList chats={chats} />}>
+				<Route path="chats" element={<ChatList />}>
 					<Route
 						path=":chatId"
 						element={

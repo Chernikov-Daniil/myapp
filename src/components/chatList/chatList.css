@@ -2,28 +2,28 @@
 	display: flex;
 	justify-content: center;
 	margin: 50px 0 0 0;
- }
+}
 
- .chats-item {
-	 margin: 0 100px 0 0;
-	 font-size: 24px;
-	 list-style-type: none;
-	 text-decoration: none;
-	 padding-left: 30px;
-	 box-sizing: border-box;
-	 
- }
+.chats-item {
+	margin: 0 100px 0 0;
+	font-size: 24px;
+	list-style-type: none;
+	text-decoration: none;
+	padding-left: 30px;
+	box-sizing: border-box;
 
- .chats-item:last-child {
-	 margin: 0;
- }
+}
 
- .link {
-	 text-decoration: none;
-	 position: relative;
- }
+.chats-item:last-child {
+	margin: 0;
+}
 
- .link:hover {
+.link {
+	text-decoration: none;
+	position: relative;
+}
+
+.link:hover {
 	text-decoration: underline;
 }
 
@@ -36,7 +36,16 @@
 	top: 8px;
 	left: -23px;
 	background-image: url("../../utils/images/tick.png");
-	background-size:cover;
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-} 
+}
+
+.formChat {
+	text-align: center;
+}
+
+.title {
+	font-size: 20px;
+	margin-left: 12px;
+}

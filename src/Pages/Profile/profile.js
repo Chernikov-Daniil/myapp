@@ -1,17 +1,20 @@
 import { Form } from "../../components/Form/form";
-import { withProfileContext } from "../../utils/ProfileContext";
-import { store } from "../../store";
 import "./profile.css";
 import { useDispatch, useSelector } from "react-redux";
-import { showName } from "../../store/profile/actions";
+import { setName, SET_NAME, toggleName } from "../../store/profile/actions";
 
-export const Profile = ({ name, setName }) => {
+export const Profile = () => {
 
-	const storeData = useSelector((state) => state.showName);
+	const showName = useSelector((state) => state.showName);
+	const userName = useSelector((state) => state.name);
 	const dispatch = useDispatch();
 
 	const handleChange = () => {
-		dispatch(showName);
+		dispatch(toggleName);
+	}
+
+	const handleSubmit = (newName) => {
+		dispatch(setName(newName));
 	}
 
 	return (
@@ -22,10 +25,8 @@ export const Profile = ({ name, setName }) => {
 				checked={showName}
 				onChange={handleChange}
 			/>
-			{showName && <span>{name}</span>}
-			<Form onSubmit={setName} />
+			{showName && <span>{userName}</span>}
+			<Form onSubmit={handleSubmit} />
 		</div>
 	);
 };
-
-export default withProfileContext(Profile);
