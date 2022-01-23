@@ -4,7 +4,7 @@ import { Error } from "../Error";
 import { Profile } from "../Pages/Profile";
 import { Home } from "../Pages/Home";
 import "./router.css";
-import { ChatList } from "../chatList";
+import { ChatList } from "../ChatList";
 import { useState } from "react";
 
 const initialChats = [

@@ -1,11 +1,11 @@
 import { Form } from "../../Form";
 import "./profile.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { setName, toggleName } from "../../../store/profile/actions";
+import { setName, toggleName } from "../../../store/Profile/actions";
 import {
   selectShowName,
   selectUserName,
-} from "../../../store/profile/selectors";
+} from "../../../store/Profile/selectors";
 
 export const Profile = () => {
   const showName = useSelector(selectShowName, shallowEqual);

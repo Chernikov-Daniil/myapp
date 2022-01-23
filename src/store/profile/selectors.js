@@ -1,2 +1,2 @@
-export const selectShowName = (state) => state.showName;
-export const selectUserName = (state) => state.name;
+export const selectShowName = (state) => state.profile.showName;
+export const selectUserName = (state) => state.profile.name;
