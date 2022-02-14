@@ -4,9 +4,18 @@ import { MessageList } from "../../messageList";
 import "./chats.css";
 import { AUTHORS } from "../../../utils/constants";
 import { Navigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addMessage } from "../../../store/Messages/actions";
+import { SelectMessages } from "../../../store/Messages/selectors";
 
-export const Chats = ({ messages, onAddMessage }) => {
+export const Chats = () => {
   const { chatId } = useParams();
+  const messages = useSelector(SelectMessages);
+  const dispatch = useDispatch();
+
+  const onAddMessage = (newMessage, chatId) => {
+    dispatch(addMessage(newMessage, chatId));
+  };
 
   const handleSubmit = (text) => {
     const newMessage = { text, author: AUTHORS.human, id: `msg-${Date.now()}` };

@@ -5,76 +5,46 @@ import { Profile } from "../Pages/Profile";
 import { Home } from "../Pages/Home";
 import "./router.css";
 import { ChatList } from "../ChatList";
-import { useState } from "react";
 
-const initialChats = [
-  { name: "chat 1", id: "chat1" },
-  { name: "chat 2", id: "chat2" },
-  { name: "chat 3", id: "chat3" },
-  { name: "chat 4", id: "chat4" },
-  { name: "chat 5", id: "chat5" },
-];
+export const Router = () => (
+  <BrowserRouter>
+    <ul className="list">
+      <li className="list-item">
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
 
-const initialMessages = initialChats.reduce((acc, chat) => {
-  acc[chat.id] = [];
-  return acc;
-}, {});
+      <li className="list-item">
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+          to="/chats"
+        >
+          Chats
+        </NavLink>
+      </li>
 
-export const Router = () => {
-  const [messages, setMessages] = useState(initialMessages);
+      <li className="list-item">
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
+          to="/profile"
+        >
+          Profile
+        </NavLink>
+      </li>
+    </ul>
 
-  const handleAddMessage = (newMessage, chatId) => {
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      [chatId]: [...prevMessages[chatId], newMessage],
-    }));
-  };
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="chats" element={<ChatList />}>
+        <Route path=":chatId" element={<Chats />} />
+      </Route>
+      <Route path="/profile" element={<Profile />} />
 
-  return (
-    <BrowserRouter>
-      <ul className="list">
-        <li className="list-item">
-          <NavLink
-            style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
-            to="/"
-          >
-            Home
-          </NavLink>
-        </li>
-
-        <li className="list-item">
-          <NavLink
-            style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
-            to="/chats"
-          >
-            Chats
-          </NavLink>
-        </li>
-
-        <li className="list-item">
-          <NavLink
-            style={({ isActive }) => ({ color: isActive ? "green" : "blue" })}
-            to="/profile"
-          >
-            Profile
-          </NavLink>
-        </li>
-      </ul>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="chats" element={<ChatList />}>
-          <Route
-            path=":chatId"
-            element={
-              <Chats messages={messages} onAddMessage={handleAddMessage} />
-            }
-          />
-        </Route>
-        <Route path="/profile" element={<Profile />} />
-
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+      <Route path="*" element={<Error />} />
+    </Routes>
+  </BrowserRouter>
+);

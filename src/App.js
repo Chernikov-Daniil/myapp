@@ -1,7 +1,5 @@
 import { Router } from "./components/Router";
 import "./App.css";
-import { ProfileContext } from "./utils/ProfileContext";
-import { useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
