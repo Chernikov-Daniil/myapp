@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Form } from "../../Form";
 import { MessageList } from "../../messageList";
 import "./chats.css";
@@ -6,12 +6,22 @@ import { AUTHORS } from "../../../utils/constants";
 import { Navigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../../../store/Messages/actions";
-import { SelectMessages } from "../../../store/Messages/selectors";
+import {
+  SelectMessages,
+  selectMessagesByChatId,
+} from "../../../store/Messages/selectors";
 
 export const Chats = () => {
   const { chatId } = useParams();
   const messages = useSelector(SelectMessages);
   const dispatch = useDispatch();
+
+  const getMessagesByChatId = useMemo(
+    () => selectMessagesByChatId(chatId),
+    [chatId]
+  );
+
+  const messagesForCurrentChat = useSelector(getMessagesByChatId);
 
   const onAddMessage = (newMessage, chatId) => {
     dispatch(addMessage(newMessage, chatId));
@@ -51,7 +61,7 @@ export const Chats = () => {
   return (
     <>
       <div className="Chats">
-        <MessageList messages={messages[chatId]} />
+        <MessageList messages={messagesForCurrentChat} />
         <Form onSubmit={handleSubmit} />
       </div>
     </>
