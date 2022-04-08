@@ -6,6 +6,7 @@ import {
   selectShowName,
   selectUserName,
 } from "../../../store/Profile/selectors";
+import { BUTTONNAME } from "../../../utils/constants";
 
 export const Profile = () => {
   const showName = useSelector(selectShowName, shallowEqual);
@@ -25,7 +26,7 @@ export const Profile = () => {
       <h3 className="title"> This is Profile</h3>
       <input type="checkbox" checked={showName} onChange={handleChange} />
       {showName && <span>{userName}</span>}
-      <Form onSubmit={handleSubmit} />
+      <Form onSubmit={handleSubmit} buttonName={BUTTONNAME.change} />
     </div>
   );
 };

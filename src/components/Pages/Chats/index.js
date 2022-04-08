@@ -1,11 +1,12 @@
-import { useEffect, useMemo } from "react";
-import { Form } from "../../Form";
-import { MessageList } from "../../messageList";
 import "./chats.css";
-import { AUTHORS } from "../../../utils/constants";
+import { useMemo } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../../../store/Messages/actions";
+
+import { Form } from "../../Form";
+import { MessageList } from "../../MesssageList";
+import { AUTHORS, BUTTONNAME } from "../../../utils/constants";
+import { addMessageWithReply } from "../../../store/Messages/actions";
 import {
   SelectMessages,
   selectMessagesByChatId,
@@ -24,35 +25,13 @@ export const Chats = () => {
   const messagesForCurrentChat = useSelector(getMessagesByChatId);
 
   const onAddMessage = (newMessage, chatId) => {
-    dispatch(addMessage(newMessage, chatId));
+    dispatch(addMessageWithReply(newMessage, chatId));
   };
 
   const handleSubmit = (text) => {
     const newMessage = { text, author: AUTHORS.human, id: `msg-${Date.now()}` };
     onAddMessage(newMessage, chatId);
   };
-
-  useEffect(() => {
-    let timeout;
-    if (
-      messages[chatId]?.[messages[chatId].length - 1]?.author === AUTHORS.human
-    ) {
-      timeout = setTimeout(() => {
-        onAddMessage(
-          {
-            text: "Сообщение доставлено",
-            author: AUTHORS.bot,
-            id: `msg-${Date.now()}`,
-          },
-          chatId
-        );
-      }, 1500);
-    }
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [messages, chatId, onAddMessage]);
 
   if (!messages[chatId]) {
     return <Navigate to="/chats" replace />;
@@ -62,7 +41,7 @@ export const Chats = () => {
     <>
       <div className="Chats">
         <MessageList messages={messagesForCurrentChat} />
-        <Form onSubmit={handleSubmit} />
+        <Form onSubmit={handleSubmit} buttonName={BUTTONNAME.send} />
       </div>
     </>
   );

@@ -1,51 +1,56 @@
 .chats {
-	display: flex;
-	justify-content: center;
-	margin: 50px 0 0 0;
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 0 0;
 }
 
 .chats-item {
-	margin: 0 100px 0 0;
-	font-size: 24px;
-	list-style-type: none;
-	text-decoration: none;
-	padding-left: 30px;
-	box-sizing: border-box;
-
+  margin: 0 100px 0 0;
+  font-size: 24px;
+  list-style-type: none;
+  text-decoration: none;
+  padding-left: 30px;
+  box-sizing: border-box;
+  display: flex;
 }
 
 .chats-item:last-child {
-	margin: 0;
+  margin: 0;
 }
 
 .link {
-	text-decoration: none;
-	position: relative;
+  text-decoration: none;
+  position: relative;
 }
 
 .link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .link::before {
-	content: '';
-	display: block;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	top: 8px;
-	left: -23px;
-	background-image: url("../../utils/images/tick.png");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 8px;
+  left: -23px;
+  background-image: url("../../utils/images/tick.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.formChat {
-	text-align: center;
+.wrp-form {
+  width: 350px;
+  margin-left: 10px;
 }
 
 .title {
-	font-size: 20px;
-	margin-left: 12px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.iconDelete {
+  cursor: pointer;
 }
